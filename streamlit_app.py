@@ -9,7 +9,7 @@ import io
 st.title("⚽ Kicker Kiste Turnierplaner")
 
 # Default-Spieler
-DEFAULT_PLAYERS = "Tom, Martin, Augsburer, Jolle, Vivian, Raphi"
+DEFAULT_PLAYERS = "Martin, Augsburer, Jolle, Vivian, Raphi, Tom"
 
 # Session State initialisieren
 if 'players_input' not in st.session_state:
