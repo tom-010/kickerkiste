@@ -2,6 +2,8 @@ import streamlit as st
 import itertools
 import pandas as pd
 import random
+import io
+
 
 # Titel der App
 st.title("⚽ Kicker Kiste Turnierplaner")
@@ -51,10 +53,12 @@ else:
     edited_df = st.data_editor(df, num_rows="dynamic")
 
     # Export-Button für CSV
-    csv = edited_df.to_csv(index=False).encode('utf-8')
+    buffer = io.BytesIO()
+    with pd.ExcelWriter(buffer := io.BytesIO(), engine='xlsxwriter') as writer:
+        df.to_excel(writer, index=False, sheet_name="Spielplan")
     st.download_button(
-        label="📥 Als CSV herunterladen",
-        data=csv,
-        file_name="kickerkiste_spielplan.csv",
-        mime="text/csv",
+        label="📥 Als Excel herunterladen",
+        data=buffer.getvalue(),
+        file_name="kickerkiste_spielplan.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     )
