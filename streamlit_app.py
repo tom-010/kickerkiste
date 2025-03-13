@@ -6,12 +6,22 @@ import random
 # Titel der App
 st.title("⚽ Kicker Kiste Turnierplaner")
 
-# Eingabe der Spielernamen
+# Default-Spieler
+DEFAULT_PLAYERS = "Tom, Martin, Augsburer, Jolle, Vivian, Raphi"
+
+# Session State initialisieren
+if 'players_input' not in st.session_state:
+    st.session_state['players_input'] = DEFAULT_PLAYERS
+
+# Sidebar-Eingabe
 st.sidebar.header("Spieler hinzufügen")
-default_players = ["Tom", "Martin", "Augsburer", "Jolle", "Vivian", "Raphi"]
-random.shuffle(default_players)
-default_players = ", ".join(default_players)
-players_input = st.sidebar.text_area("Spielernamen (mit Komma trennen)", value=default_players)
+players_input = st.sidebar.text_area(
+    "Spielernamen (mit Komma trennen)",
+    value=st.session_state['players_input']
+)
+
+# Spieler speichern
+st.session_state['players_input'] = players_input
 players = [name.strip() for name in players_input.split(",") if name.strip()]
 
 # Anzahl der Spieler validieren
