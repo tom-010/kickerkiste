@@ -4,7 +4,7 @@ import pandas as pd
 import random
 
 # Titel der App
-st.title("⚽ Tischfußball Turnierplaner")
+st.title("⚽ Kicker Kiste Turnierplaner")
 
 # Eingabe der Spielernamen
 st.sidebar.header("Spieler hinzufügen")
@@ -43,6 +43,6 @@ else:
     st.download_button(
         label="📥 Als CSV herunterladen",
         data=csv,
-        file_name="tischfussball_spielplan.csv",
+        file_name="kickerkiste_spielplan.csv",
         mime="text/csv",
     )
