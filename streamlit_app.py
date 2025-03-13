@@ -8,7 +8,9 @@ st.title("⚽ Kicker Kiste Turnierplaner")
 
 # Eingabe der Spielernamen
 st.sidebar.header("Spieler hinzufügen")
-default_players = "Tom, Martin, Augsburer, Jolle, Vivian, Raphi"
+default_players = ["Tom", "Martin", "Augsburer", "Jolle", "Vivian", "Raphi"]
+random.shuffle(default_players)
+default_players = ", ".join(default_players)
 players_input = st.sidebar.text_area("Spielernamen (mit Komma trennen)", value=default_players)
 players = [name.strip() for name in players_input.split(",") if name.strip()]
 
